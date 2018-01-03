@@ -1,0 +1,20 @@
+The intuition came from the fact that if we submit constant 1 we get an accuracy score of 0.5, so we
+can conclude that half of the values in the test set were 1 and the others 0. 
+The guess was to think about similarity between different feature ids. The similarity is
+measured if we compare how often are we asked to classify a feature with the same other features.
+Thats what we come up with if we count the occurances of similarities:
+	
+	20    183799
+	14    183279
+	15       852
+	19       546
+	28        54
+	35        14
+	21         6
+We can see that about the half of the features have the same similarity values, so we conclude
+that they are belonging to the same class. So if we predict 1 for all the rows with
+similarity value 20 we get an accuracy score of 0.997298.
+
+This leakage was possible because they didn't sample them random, I think the reason for that is
+that the fraction of positive classes is much lower than the negative classes and
+so the dataset would have been very unbalanced.
